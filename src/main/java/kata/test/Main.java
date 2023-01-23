@@ -6,18 +6,16 @@ public class Main {
     private static String userString;
 
 
-    public static void main(String[] args) throws MyException {
+    public static void main(String[] args) throws MyException, Exception {
 
         Scanner scanner = new Scanner(System.in);
         String userString = scanner.nextLine();
         userLinenIsEmpty(userString);
-        System.out.println("Input:");
-        System.out.println(userString);
         calc(userString);
 
     }
 
-    public static String calc(String input) throws MyException {
+    public static String calc(String input) throws MyException, Exception {
         String[] matemOperation = input3Ellement(input);
         String output = "";
         int result = 0;
@@ -25,8 +23,8 @@ public class Main {
             int first_number = Integer.parseInt(matemOperation[0]);
             int last_number = Integer.parseInt(matemOperation[2]);
 
-        if ((first_number < 0 || first_number > 10) || (last_number < 0 || last_number > 10)) {
-            throw new MyException("throws Exception //т.к. строка не является математической операцией");
+        if ((first_number < 1 || first_number > 10) || (last_number < 1 || last_number > 10)) {
+            throw new Exception("введены неверные числа ");
 
         }
         switch (matemOperation[1]) {
@@ -40,9 +38,7 @@ public class Main {
                 result = first_number * last_number;
                 break;
             case "/":
-                if (last_number == 0) {
-                    System.out.println("На ноль делить нельзя. Давай попробуем сначала ");
-                }
+
                 result = first_number / last_number;
                 break;
 
@@ -51,7 +47,8 @@ public class Main {
 
         }
 
-
+        System.out.println("Input:");
+        System.out.println(input);
         output = String.valueOf(result);
         System.out.println("Output:\n " + output);
 
